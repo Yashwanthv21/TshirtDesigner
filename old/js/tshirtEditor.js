@@ -111,6 +111,10 @@ var line4;
 			var color = url.searchParams.get("color");
 			console.log(color, image_url);
 
+			// Set color
+			document.getElementById("shirtDiv").style.backgroundColor = color;
+
+			// Set Image
 			var offset = 50;
 	        var left = fabric.util.getRandomInt(0 + offset, 200 - offset);
 	        var top = fabric.util.getRandomInt(0 + offset, 400 - offset);
@@ -302,7 +306,12 @@ var line4;
 	   
 	   $('.color-preview').click(function(){
 		   var color = $(this).css("background-color");
-		   document.getElementById("shirtDiv").style.backgroundColor = color;		   
+		   document.getElementById("shirtDiv").style.backgroundColor = color;	
+
+		   var url_string = window.location.href; 
+		   var url = new URL(url_string);
+		   url.searchParams.set('color', color);
+		   window.history.replaceState(null, null, url);
 	   });
 	   
 	   $('#flip').click(
